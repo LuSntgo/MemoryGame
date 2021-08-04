@@ -3,30 +3,25 @@ import "./App.css";
 
 //data
 import cards from "./data";
+//Components
+import Card from "./Components/Card"; /* 1 */
+
 //card back image
 import cardBack from "./images/CardBack.jpg";
 
 
 function App() {
+  let cardsGrid = cards.map(card => (
+    <Card key={card.id} card={card} />
+  )); /*2, 3 */
   return <div className="App border my-5">
     <div className="container">
-      <div className="row">
-        {/*1*/}
-        <div className="col-3 my-1">
-          {/*2*/}
-
-        <img className="mx-auto"
-        src={cardBack}
-        // used percentages instead of pixels to be responsive with the screen size
-        height="100%"
-        width="100%"
-        key="back" />
-        {/*3*/}
+      <div className="row"> {cardsGrid}</div>
+        
 
       </div>
     </div>
-    </div>
-  </div>;
+
 }
 
 export default App;
