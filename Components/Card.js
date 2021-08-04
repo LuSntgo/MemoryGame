@@ -1,15 +1,17 @@
 import React, { useState} from "react";
-import ReactCardFlip from "react-card-flip"; /*1*/
 import cardBack from "../images/CardBack.jpg";
+import ReactCardFlip from "react-card-flip"; 
 
-/* 1 */ 
 
 const Card = ({ card }) => { /* 3*/
     const [flipped, changeFlip] = useState(false); /*1*/
     /*3*/
     const handleFlip =() => {
-        changeFlip(!flipped);;
+        if (flipped !== true){
+        changeFlip(true);
+        checkFlipped({ id: card.id, changeFlip: changeFlip});
     }
+    };
     return (
         <div className="col-3 my-1">
             { /* 2 */ }
@@ -34,4 +36,4 @@ const Card = ({ card }) => { /* 3*/
 };
 
 export default Card; 
-/* 3 */
+
