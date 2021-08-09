@@ -5,11 +5,13 @@ import allCards from "../data";
 import { shuffle } from "./utils";
 //Components
 import Card from "./Card";
+import Score from "./Score";
 
-const Game = ({ difficulty }) => {
+const Game = ({ mode, difficulty }) => {
     const [cards, setCards] = useStates([]);
      //   const [flippedCards, changeFlipped] = useState([]);
-    //Used to duplicate the amount of cards since we need two of each and 
+   
+     //Used to duplicate the amount of cards since we need two of each and 
     //shuffle them using the function defined at the top
 
     useEffect(() => {
@@ -25,8 +27,15 @@ switch (difficulty){
     break;
 
 }
-setCards (() shuffle([...cards, ...cards]));
+
+setCards (() => shuffle([...cards, ...cards]));
     }, [difficulty]); 
+//To store player score and pass them
+const [score, setScore] = useState([0, 0]);
+
+//to know which player's turn it is
+const [playerTurn, setPlayerTurn] = useState(true);
+const [failedFlips, increaseFailed] = useState(0);
 
     let flippedCards = [];
     const changeFlipped = anArray =>{
@@ -44,7 +53,17 @@ setCards (() shuffle([...cards, ...cards]));
         if (flippedCards.length === 2){
             if (flippedCards[0].id !== flippedCards[1].id){
                 unflipCards(flippedCards[0].changeFlip, flippedCards[1].changeFlip);
+                increaseFailed(failedFlips + 1);
+                setPlayerTurn(!playerTurn);
 
+            } else {
+                if (mode ==="multi"){
+                    if (playerTurn){
+                        setScore([(score[0] += 1), score[1]]);
+                } else {
+                    setScore ([score[0], (score[1] += 1)]);
+                }
+                }
             }
             changeFlipped([]);
         };
@@ -52,15 +71,20 @@ setCards (() shuffle([...cards, ...cards]));
     
     
     //Mapping through the array of cards and placing them in the card component
-    const cardsGrid = cards.map((card, idx) => (
+    const cardsList = cards.map((card, idx) => (
         <Card key={`${card.id}-${idx}`} card={card} checkFlipped={checkFlipper} /> 
     )); 
     return (
         <div className="container">
         <div className="row">
           <div className=" col-9">
-            <div className="row border">{cardsGrid}</div>
+            <div className="row border">{cardsList}</div>
             </div>
+            <Score
+            mode = {mode}
+            score={score}
+            failedFlips={failedFlips}
+            playerTurn={playerTurn} />
             </div>
             </div>
 

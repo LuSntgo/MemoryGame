@@ -57,7 +57,7 @@ export default cards;
 import react from "react";
 import ".App.css";
 //data
-
+import cards from "./data"; /*1*/
 
 //card back image
 
