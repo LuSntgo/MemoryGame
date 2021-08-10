@@ -7,7 +7,7 @@ import allCards from "../data";
 import { shuffle } from "../utils";
 
 // Components
-import Card from "../import";
+import Card from "./Card";
 import Score from "./Score";
 
 const Game = ({ mode, difficulty }) => {
