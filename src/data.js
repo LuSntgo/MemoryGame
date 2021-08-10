@@ -1,90 +1,36 @@
-import AppleCard from "./images/AppleCard.jpg";
-import CareemCard from "./images/CareemCard.jpg";
-import CiscoCard from "./images/CiscoCard.jpg";
-import EbayCard from "./images/EbayCard.jpg";
-import FacebookCard from "./images/FacebookCard.jpg";
-import GoogleCard from "./images/GoogleCard.jpg";
-import IntelCard from "./images/IntelCard.jpg";
-import PaypalCard from "./images/PaypalCard.jpg";
-import TwitterCard from "./images/TwitterCard.jpg";
-import UberCard from "./images/UberCard.jpg";
+import React from "react";
+import "./App.css";
 
-const cards = [
-  {
-    id: 1,
-    front: AppleCard
-  },
-  {
-    id: 2,
-    front: CareemCard
-  },
-  {
-    id: 3,
-    front: CiscoCard
-  },
-  {
-    id: 4,
-    front: EbayCard
-  },
-  {
-    id: 5,
-    front: FacebookCard
-  },
-  {
-    id: 6,
-    front: GoogleCard
-  },
-  {
-    id: 7,
-    front: IntelCard
-  },
-  {
-    id: 8,
-    front: PaypalCard
-  },
-  {
-    id: 9,
-    front: TwitterCard
-  },
-  {
-    id: 10,
-    front: UberCard
-  }
-];
+//Data
+import cards from "./data"; /* 1 */
 
-export default cards;
+// Card Back Image
+import cardBack from "./images/CardBack.jpg";
 
-import react from "react";
-import ".App.css";
-//data
-import cards from "./data"; /*1*/
-
-//card back image
-
-import cardBack from "../images/CardBack.jpg";
-function App(){
+function App() {
   let cardsGrid = cards.map(card => {
     return (
       <div className="col-3 my-1">
-        <img className="mx-auto"
-        src={cardBack}
-        height = "100%"
-        width = "100%"
-        key="back"
-/>
-
+        <img
+          className="mx-auto"
+          src={cardBack}
+          height="100%"
+          width="100%"
+          key="back"
+        />
       </div>
-    )
-  })
-}
-/* 2 */
-return (
-  <div className="App border my-5">
-    <div className="container">
-      <div className="row">
-        {cardsGrid} 
-        {/* 3 */}
+    );
+  }); /* 2 */
+
+  return (
+    <div className="App border my-5">
+      <div className="container">
+        <div className="row">
+          {cardsGrid} {/* 3 */}
+        </div>
       </div>
     </div>
-  </div>
-)
+  );
+}
+
+export default App;
